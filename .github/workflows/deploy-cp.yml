@@ -18,8 +18,8 @@ jobs:
       - name: Install az, authenticate to cluster, etc
         run: |
           az aks get-credentials \
-               --resource-group {{secret.AZ_RG }} \
-               --name {{secret.AKS_CLUSTER}} \
+               --resource-group ${{ secrets.AZ_RG }} \
+               --name ${{ secrets.AKS_CLUSTER }} \
                --overwrite-existing
           ./deploy.sh
           
