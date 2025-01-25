@@ -17,7 +17,7 @@ jobs:
 
       - name: Install az, authenticate to cluster, etc
         run: |
-          ./az aks get-credentials \
+          az aks get-credentials \
                --resource-group {{secret.AZ_RG }} \
                --name {{secret.AKS_CLUSTER}} \
                --overwrite-existing
