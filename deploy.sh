@@ -57,4 +57,5 @@ kubectl create secret generic rest-credential \
        --namespace confluent
 
 kubectl create secret generic credential \
-    --from-file=plain-users.json=creds/creds-kafka-sasl-users.json 
+    --from-file=plain-users.json=creds/creds-kafka-sasl-users.json \
+    --from-file=plain.txt=creds/creds-client-kafka-sasl-user.txt
