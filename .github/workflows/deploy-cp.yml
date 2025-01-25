@@ -15,10 +15,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      - name: Run a multi-line script
+      - name: Install az, authenticate to cluster, etc
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          ./az aks get-credentials \
+               --resource-group {{secret.AZ_RG }} \
+               --name {{secret.AKS_CLUSTER}} \
+               --overwrite-existing
+          ./deploy.sh
+          
