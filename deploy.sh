@@ -29,32 +29,32 @@ kubectl create secret generic mds-token \
 # Kafka RBAC credential
 kubectl create secret generic mds-client \
        --from-file=bearer.txt=creds/bearer.txt \
-       --namespace confluent
+       --namespace $NAMESPACE
 # Control Center RBAC credential
 kubectl create secret generic c3-mds-client \
        --from-file=bearer.txt=creds/c3-mds-client.txt \
-       --namespace confluent
+       --namespace $NAMESPACE
 # Connect RBAC credential
 kubectl create secret generic connect-mds-client \
        --from-file=bearer.txt=creds/connect-mds-client.txt \
-       --namespace confluent
+       --namespace $NAMESPACE
 # Schema Registry RBAC credential
 kubectl create secret generic sr-mds-client \
        --from-file=bearer.txt=creds/sr-mds-client.txt \
-       --namespace confluent
+       --namespace $NAMESPACE
 # ksqlDB RBAC credential
 kubectl create secret generic ksqldb-mds-client \
        --from-file=bearer.txt=creds/ksqldb-mds-client.txt \
-       --namespace confluent
+       --namespace $NAMESPACE
 # Kafka Rest Proxy RBAC credential
 kubectl create secret generic krp-mds-client \
        --from-file=bearer.txt=creds/krp-mds-client.txt \
-       --namespace confluent
+       --namespace $NAMESPACE
 # Kafka REST credential
 kubectl create secret generic rest-credential \
        --from-file=bearer.txt=creds/bearer.txt \
        --from-file=basic.txt=creds/bearer.txt \
-       --namespace confluent
+       --namespace $NAMESPACE
 
 kubectl create secret generic credential \
     --from-file=plain-users.json=creds/creds-kafka-sasl-users.json \

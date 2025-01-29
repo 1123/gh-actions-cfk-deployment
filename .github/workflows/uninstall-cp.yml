@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Uninstall Confluent Platform
+      - name: Install az, authenticate to cluster, uninstall cp
         run: |
           az login \
              --service-principal \
@@ -27,6 +27,6 @@ jobs:
                --name ${{ secrets.AKS_CLUSTER }} \
                --overwrite-existing
           az account set --subscription ${{ secrets.AZ_SUBSCRIPTION_ID }}
-          # uninstall Confluent Platform, remove keycloak, remove secrets
-          ./deploy.sh
+
+          ./destroy.sh
           
