@@ -1,3 +1,5 @@
+set -u -e
+
 NAMESPACE=confluent
 
 kubectl create namespace $NAMESPACE || echo "could not create namespace; may already exist"
@@ -10,16 +12,12 @@ helm upgrade \
   --install operator confluentinc/confluent-for-kubernetes \
    --namespace $NAMESPACE
 
-kubectl get pods --namespace $NAMESPACE
-
 kubectl create -n $NAMESPACE secret generic oauth-jass \
   --from-file=oauth.txt=oauth_jass.txt
 
 kubectl create secret tls ca-pair-sslcerts \
   --cert=certs/generated/cacerts.pem \
   --key=certs/generated/rootCAkey.pem -n $NAMESPACE
-
-kubectl apply -f cp_components.yaml
 
 kubectl create secret generic mds-token \
   --from-file=mdsPublicKey.pem=certs/mds-publickey.txt \
@@ -59,3 +57,6 @@ kubectl create secret generic rest-credential \
 kubectl create secret generic credential \
     --from-file=plain-users.json=creds/creds-kafka-sasl-users.json \
     --from-file=plain.txt=creds/creds-client-kafka-sasl-user.txt
+
+kubectl apply -f cp_components.yaml
+

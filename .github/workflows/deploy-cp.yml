@@ -27,6 +27,6 @@ jobs:
                --name ${{ secrets.AKS_CLUSTER }} \
                --overwrite-existing
           az account set --subscription ${{ secrets.AZ_SUBSCRIPTION_ID }}
-          # uninstall Confluent Platform, remove keycloak, remove secrets
+          # install Confluent Platform
           ./deploy.sh
           
