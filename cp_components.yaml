@@ -69,6 +69,7 @@ spec:
       - User:ssologin
       - User:kafka
       - User:benedikt
+      - User:bob
   services:
     mds:
       tls:
