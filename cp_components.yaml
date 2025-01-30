@@ -68,6 +68,7 @@ spec:
     superUsers:
       - User:ssologin
       - User:kafka
+      - User:benedikt
   services:
     mds:
       tls:
