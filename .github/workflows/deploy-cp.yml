@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Uninstall Confluent Platform
+      - name: Install Confluent Platform
         run: |
           az login \
              --service-principal \

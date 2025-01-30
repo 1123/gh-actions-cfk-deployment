@@ -12,8 +12,10 @@ helm upgrade \
   --install operator confluentinc/confluent-for-kubernetes \
    --namespace $NAMESPACE
 
+set +e
+
 kubectl create -n $NAMESPACE secret generic oauth-jass \
-  --from-file=oauth.txt=oauth_jass.txt
+  --from-file=oauth.txt=oauth_jass.txt 
 
 kubectl create secret tls ca-pair-sslcerts \
   --cert=certs/generated/cacerts.pem \
@@ -56,7 +58,10 @@ kubectl create secret generic rest-credential \
 
 kubectl create secret generic credential \
     --from-file=plain-users.json=creds/creds-kafka-sasl-users.json \
-    --from-file=plain.txt=creds/creds-client-kafka-sasl-user.txt
+    --from-file=plain.txt=creds/creds-client-kafka-sasl-user.txt \
+    --namespace $NAMESPACE
 
-kubectl apply -f cp_components.yaml
+set -e
+
+kubectl apply -f cp_components.yaml 
 
