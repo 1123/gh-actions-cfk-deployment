@@ -17,6 +17,9 @@ set +e
 kubectl create -n $NAMESPACE secret generic oauth-jass \
   --from-file=oauth.txt=oauth_jass.txt 
 
+# Make sure we have a certificate authority
+ls certs/generated/ || cd certs && ./generate-certs.sh && cd ..
+
 kubectl create secret tls ca-pair-sslcerts \
   --cert=certs/generated/cacerts.pem \
   --key=certs/generated/rootCAkey.pem -n $NAMESPACE
